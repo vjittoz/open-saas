@@ -109,3 +109,14 @@ model ContactFormMessage {
   isRead                    Boolean         @default(false)
   repliedAt                 DateTime?
 }
+
+model Lead {
+  id                   String    @id @default(uuid())
+  createdAt            DateTime  @default(now())
+  phoneNumber          String
+  businessType         String    @default("General")
+  status               String    @default("Texted")
+  aiSummary            String
+  revenueRecovered     Float     @default(2000)
+}
+

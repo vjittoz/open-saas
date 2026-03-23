@@ -317,4 +317,27 @@ page AdminMessagesPage {
   authRequired: true,
   component: import AdminMessages from "@src/admin/dashboards/messages/MessagesPage"
 }
+
+// LeadBot 360 dashboard and bot API
+route DashboardRoute { path: "/dashboard", to: DashboardPage }
+page DashboardPage {
+  authRequired: true,
+  component: import DashboardPage from "@src/client/DashboardPage"
+}
+
+query getAllLeads {
+  fn: import { getAllLeads } from "@src/lead/operations"
+  entities: [Lead]
+}
+
+action createLead {
+  fn: import { createLead } from "@src/lead/operations"
+  entities: [Lead]
+}
+
+api missedCallWebhook {
+  fn: import { missedCallWebhook } from "@src/server/webhooks/missedCall"
+  entities: [Lead]
+  httpRoute: (POST, "/api/webhook/missed-call")
+}
 //#endregion
